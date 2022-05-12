@@ -2,7 +2,8 @@ import Head from 'next/head';
 import css from '../styles/Home.module.css';
 import { HiShoppingCart } from 'react-icons/hi';
 import { AiOutlineUser, AiOutlineSearch } from 'react-icons/ai';
-import s from '../assets/s.jpg';
+import shoe from '../assets/s.jpg';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -74,7 +75,11 @@ export default function Home() {
           <div className={css.productCategory}>
             <p className={css.productLane}>SHOES</p>
             <div className={css.productCard}>
-              <img src={s} alt='shoe' />
+              <Image className={css.productImage} width={300} height={200} src={shoe} alt='shoe' />
+              <div className={css.desc}>
+                <span>$323.32</span>
+                <span></span>
+              </div>
             </div>
           </div>
         </section>

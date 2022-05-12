@@ -7,7 +7,7 @@
   padding: 2rem;
   height: auto;
   background-color: #fff;
-  box-shadow: 0 0 1rem -0.58rem black;
+  box-shadow: 0 0 1rem -0.3rem black;
 }
 
 .nav {
@@ -123,4 +123,24 @@
   -moz-border-radius: 0.3rem;
   -ms-border-radius: 0.3rem;
   -o-border-radius: 0.3rem;
+}
+
+.productCard {
+  margin-top: 2.5rem;
+  width: 20rem;
+  height: 25rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  box-shadow: 0 0 1rem -0.58rem black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.productImage {
+  object-fit: contain;
 }
