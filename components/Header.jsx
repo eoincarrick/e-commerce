@@ -2,12 +2,17 @@ import React from 'react';
 import css from '../styles/Header.module.css';
 import { HiShoppingCart } from 'react-icons/hi';
 import { Cart } from './index';
+import Link from 'next/link'
 
 const Header = () => {
   return (
     <header className={css.header}>
       <nav className={css.nav}>
-        <p>Dempi Commerce</p>
+        <Link href={'/'}>
+          <p className={css.logo}>
+            Dempi<span className={css.color}>Commerce</span>
+          </p>
+        </Link>
 
         <nav className={css.flex}>
           <div className={css.list}>

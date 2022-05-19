@@ -1,20 +1,23 @@
 import React from 'react';
 import css from '../styles/Hero.module.css';
-import banner from '../assets/q.jpg';
+import image from '../assets/shoew.png';
 
 const Hero = () => {
   return (
-    <section
-      className={css.section}
-      style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170')`,
-      }}
-    >
+    <section className={css.section}>
+      <div>
+        <img
+          className={css.image}
+          src='https://images2.imgbox.com/da/26/JAB9EPY9_o.png'
+          alt='dd'
+        />
+      </div>
       <div className={css.text}>
-        <h1>#1 Best Shopping Center</h1>
-        <p>lorem ipsumsum d orem ipsum d orem ipsum d</p>
-        <p>lorem ipsumsum d orem ipsum d orem ipsum d</p>
-        <p>lorem ipsumsum d orem ipsum d orem ipsum d</p>
+        <h3 className={css.title}>Lorram </h3>
+        <h1 className={css.name}>Brand New</h1>
+        <p className={css.description}>
+          Discover the latest additions to our <br /> menswear collection
+        </p>
         <button className={css.btn}>SHOP NOW</button>
       </div>
     </section>
