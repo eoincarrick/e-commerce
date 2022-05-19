@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../styles/Header.module.css';
 import { HiShoppingCart } from 'react-icons/hi';
-import {Cart} from './index'
+import { Cart } from './index';
 
 const Header = () => {
   return (
@@ -25,9 +25,9 @@ const Header = () => {
             </div>
           </ul>
         </nav>
-      </nav>
 
-      <Cart />
+        {/* <Cart /> */}
+      </nav>
     </header>
   );
 };
