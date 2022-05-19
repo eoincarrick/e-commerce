@@ -2,72 +2,12 @@
   width: 100%;
 }
 
-.header {
-  width: 100%;
-  padding: 2rem;
-  height: auto;
-  background-color: #fff;
-  box-shadow: 0 0 1rem -0.3rem black;
-}
 
-.nav {
-  width: min(100% - 30rem);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.list {
-  display: flex;
-  gap: 1rem;
-}
 
-.item {
-  font-weight: 500;
-}
 
-.flex {
-  display: flex;
-  gap: 4rem;
-}
 
-.icon {
-  display: flex;
-  gap: 1.3rem;
-}
 
-.section {
-  width: 100%;
-  height: 40rem;
-  background-image: url('../assets/q.jpg');
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: cover;
-}
-
-.text {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  float: right;
-  margin-inline-end: 5rem;
-}
-
-.btn {
-  width: 7rem;
-  padding: 0.7rem;
-  color: #fff;
-  background-color: red;
-  border: none;
-  border-radius: 0.3rem;
-  -webkit-border-radius: 0.3rem;
-  -moz-border-radius: 0.3rem;
-  -ms-border-radius: 0.3rem;
-  -o-border-radius: 0.3rem;
-}
 
 .category {
   width: min(100% - 30rem);
@@ -142,7 +82,7 @@
 
 /* width */
 .productCardContainer::-webkit-scrollbar {
-  width: ;
+  width: 0;
 }
 
 /* Track */
