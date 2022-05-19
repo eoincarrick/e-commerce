@@ -18,7 +18,7 @@ const Banner = () => {
       <div className={css.middle}>
         <img
           className={css.image}
-          src='https://images2.imgbox.com/89/f8/23wfjDeP_o.png'
+          src='https://images2.imgbox.com/c3/92/m3EhIgfx_o.png'
           alt=''
         />
       </div>

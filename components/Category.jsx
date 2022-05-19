@@ -5,9 +5,9 @@ const Category = () => {
   return (
     <section className={css.category}>
       <div>
-        <h2> Categories</h2>
+        <h2 className={css.header}> CATEGORIES</h2>
       </div>
-      <div className={css.category}>
+      <div className={css.categories}>
         <div className={css.card}>
           <p className={css.categoryText}>Women's</p>
         </div>

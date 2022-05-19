@@ -1,5 +1,16 @@
 .category {
-  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header {
+  font-size: 3rem;
+}
+
+.categories {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-content: center;
@@ -40,12 +51,10 @@
 }
 
 @media only screen and (max-width: 1233px) {
-  .category {
-    margin: 3rem auto;
+  .categories {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     place-content: center;
-    place-items: center;
     gap: 1rem;
   }
 }
