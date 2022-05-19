@@ -7,6 +7,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // We import document schemas
 import product from './product';
+import category from './category';
+import hero from './hero';
 
 // We import object schemas
 
@@ -18,6 +20,8 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     product,
+    category,
+    hero,
 
     /* When added to this list, object types can be used as
    { type: "typename" } in other document schemas.

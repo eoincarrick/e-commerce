@@ -56,5 +56,13 @@ export default {
       description: 'Please provide the right field value',
       validation: (Rule) => Rule.required().warning('This is required please.'),
     },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+      validation: (Rule) =>
+        Rule.required().warning('Please choose only one category.'),
+    },
   ],
 };
