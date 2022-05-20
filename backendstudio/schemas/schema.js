@@ -9,10 +9,10 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import product from './product';
 import category from './category';
 import hero from './hero';
-import blockContent from './blockContent';
 import tags from './tags';
 
 // We import object schemas
+import blockContent from './blockContent';
 
 export default createSchema({
   // We name our schema
