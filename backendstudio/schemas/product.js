@@ -24,7 +24,11 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'image',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: {
+        hotspot: true,
+      },
       description: 'Please provide the right field value',
       validation: (Rule) => Rule.required().warning('This is required please.'),
     },
@@ -57,12 +61,27 @@ export default {
       validation: (Rule) => Rule.required().warning('This is required please.'),
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'blockContent',
+      description: 'Please provide the right field value',
+      validation: (Rule) => Rule.required().warning('This is required please.'),
+    },
+    {
       name: 'category',
       title: 'Category',
       type: 'reference',
       to: [{ type: 'category' }],
       validation: (Rule) =>
         Rule.required().warning('Please choose only one category.'),
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'tags' }] }],
+      validation: (Rule) =>
+        Rule.required().warning('Should have tags that represent the product'),
     },
   ],
 };

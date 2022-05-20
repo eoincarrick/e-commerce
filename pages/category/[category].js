@@ -1,9 +1,43 @@
 import React from 'react';
-import { client } from '../../library/client';
+import { client, urlFor } from '../../library/client';
+import { Banner, Product } from '../../components';
+import css from '../../styles/CategoryCredentials.module.css';
+import Link from 'next/link';
 
 const Category = ({ categorySlug }) => {
-  console.log(categorySlug);
-  return <div>Category</div>;
+  const data = categorySlug.map((item) => console.log(item));
+  return (
+    <div className={css.main}>
+      <Banner />
+      <ul className={css.cardContainer}>
+        {categorySlug.map((item, i) => (
+          <li key={i} className={css.card}>
+            <div className={css.center}>
+              <img
+                className={css.productImage}
+                src={urlFor(item?.image[0])}
+                alt=''
+              />
+              <p className={css.productName}>{item.name}</p>
+            </div>
+            <ul className={css.productDetails}>
+              <li className={css.priceContainer}>
+                <span className={css.green}>${item.new_price}</span>
+                <span className={css.gray}>${item.old_price}</span>
+              </li>
+              <li className={css.buttonContainer}>
+                <Link href={`/product/${item.slug.current}`}>
+                  <button className={css.btn} type='button'>
+                    Details
+                  </button>
+                </Link>
+              </li>
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export const getStaticPaths = async () => {
@@ -15,9 +49,9 @@ export const getStaticPaths = async () => {
 `;
   const id = await client.fetch(query);
 
-  const paths = id.map((product) => ({
+  const paths = id.map((item) => ({
     params: {
-      slug: product.categories._ref,
+      category: item.category._ref,
     },
   }));
 

@@ -12,10 +12,10 @@ const Product = ({ products }) => {
       <ul className={css.cardContainer}>
         {products.map((item, i) => (
           <li key={i} className={css.card}>
-            <div>
+            <div className={css.center}>
               <img
                 className={css.productImage}
-                src={urlFor(item.image)}
+                src={urlFor(item?.image[0])}
                 alt=''
               />
               <p className={css.productName}>{item.name}</p>

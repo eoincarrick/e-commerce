@@ -4,8 +4,7 @@ import { Hero, Category, Product, Banner, Footer } from '../components';
 
 import { client } from '../library/client';
 
-export default function Home({ products, categories, query }) {
-  console.log('slug', query);
+export default function Home({ products, categories }) {
   return (
     <div>
       <Hero />
@@ -30,11 +29,6 @@ export const getServerSideProps = async () => {
   old_price
 }`;
 
-  const query = `*[_type == 'product']{
-  category
-}
-`;
-
   const categoryQuery = `*[_type == 'category']{
   name,
   image,
@@ -43,14 +37,12 @@ export const getServerSideProps = async () => {
 
   const products = await client.fetch(productsQuery);
   const categories = await client.fetch(categoryQuery);
-  const slug = await client.fetch(query);
 
   return {
     // props that will be passed to the component
     props: {
       products,
       categories,
-      slug,
     },
   };
 };

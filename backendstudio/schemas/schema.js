@@ -9,6 +9,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import product from './product';
 import category from './category';
 import hero from './hero';
+import blockContent from './blockContent';
+import tags from './tags';
 
 // We import object schemas
 
@@ -21,6 +23,7 @@ export default createSchema({
     /* Your types here! */
     product,
     category,
+    tags,
     hero,
 
     /* When added to this list, object types can be used as
@@ -30,5 +33,7 @@ export default createSchema({
     and they don't have a type: 'document' but 'object' instead.
     That's why they are object types.
     */
+
+    blockContent,
   ]),
 });
