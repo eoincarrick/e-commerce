@@ -2,18 +2,55 @@ import css from '../styles/Home.module.css';
 
 import { Hero, Category, Product, Banner, Footer } from '../components';
 
-export default function Home() {
+import { client } from '../library/client';
+
+export default function Home({ products, categories, query }) {
+  console.log('slug', query);
   return (
     <div>
       <Hero />
       <main className={css.main}>
         <Banner />
-        <Category />
+        <Category categories={categories} />
         <Banner />
-        <Product />
+        <Product products={products} />
         <Banner />
         <Footer />
       </main>
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const productsQuery = `*[_type == 'product']{
+  name,
+  slug,
+  image,
+  new_price,
+  old_price
+}`;
+
+  const query = `*[_type == 'product']{
+  category
+}
+`;
+
+  const categoryQuery = `*[_type == 'category']{
+  name,
+  image,
+  _id
+}`;
+
+  const products = await client.fetch(productsQuery);
+  const categories = await client.fetch(categoryQuery);
+  const slug = await client.fetch(query);
+
+  return {
+    // props that will be passed to the component
+    props: {
+      products,
+      categories,
+      slug,
+    },
+  };
+};

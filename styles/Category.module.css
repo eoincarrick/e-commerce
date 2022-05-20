@@ -20,7 +20,6 @@
 .card {
   width: 20rem;
   height: 5rem;
-  background-image: url('../assets/f.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,7 +34,7 @@
 }
 
 .categoryText {
-  width: 5rem;
+  width: fit-content;
   height: auto;
   padding: 0.3rem;
   text-align: center;
@@ -48,6 +47,7 @@
   -moz-border-radius: 0.3rem;
   -ms-border-radius: 0.3rem;
   -o-border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1233px) {
