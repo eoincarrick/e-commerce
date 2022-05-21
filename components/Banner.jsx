@@ -20,6 +20,7 @@ const Banner = () => {
           className={css.image}
           src='https://images2.imgbox.com/c3/92/m3EhIgfx_o.png'
           alt=''
+          loading='lazy'
         />
       </div>
       <div className={css.end}>

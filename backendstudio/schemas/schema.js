@@ -10,6 +10,8 @@ import product from './product';
 import category from './category';
 import hero from './hero';
 import tags from './tags';
+import color from './color';
+import size from './size';
 
 // We import object schemas
 import blockContent from './blockContent';
@@ -24,6 +26,8 @@ export default createSchema({
     product,
     category,
     tags,
+    color,
+    size,
     hero,
 
     /* When added to this list, object types can be used as

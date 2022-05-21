@@ -25,10 +25,10 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'array',
-      of: [{ type: 'image' }],
       options: {
         hotspot: true,
       },
+      of: [{ type: 'image' }],
       description: 'Please provide the right field value',
       validation: (Rule) => Rule.required().warning('This is required please.'),
     },
@@ -72,6 +72,22 @@ export default {
       title: 'Category',
       type: 'reference',
       to: [{ type: 'category' }],
+      validation: (Rule) =>
+        Rule.required().warning('Please choose only one category.'),
+    },
+    {
+      name: 'color',
+      title: 'Color',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'color' }] }],
+      validation: (Rule) =>
+        Rule.required().warning('Please choose only one category.'),
+    },
+    {
+      name: 'size',
+      title: 'Size',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'size' }] }],
       validation: (Rule) =>
         Rule.required().warning('Please choose only one category.'),
     },

@@ -1,17 +1,13 @@
 .header {
   width: 100%;
-  padding: 2rem;
-  height: auto;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+
   background-color: transparent;
   /* box-shadow: 0 0 1rem -0.3rem black; */
-}
-
-.nav {
-  width: min(100% - 30rem);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .list {
