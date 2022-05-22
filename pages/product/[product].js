@@ -4,6 +4,13 @@ import css from '../../styles/ProductCredentials.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import Link from 'next/link';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import {
+  AiFillStar,
+  AiOutlinePlus,
+  AiOutlineMinus,
+  AiOutlineStar,
+} from 'react-icons/ai';
+import BlockContent from '@sanity/block-content-to-react';
 
 const ProductCredentials = ({ singleProduct }) => {
   // Querying for data from backend (SANITY)
@@ -21,7 +28,6 @@ const ProductCredentials = ({ singleProduct }) => {
     new_price,
   } = singleProduct;
 
-  console.log(singleProduct);
   return (
     <div className={css.ProductCredentials}>
       <section>
@@ -84,21 +90,47 @@ const ProductCredentials = ({ singleProduct }) => {
               ))}
           </div>
         </div>
-
         <div className={css.descriptionSection}>
-          <div className={css.nameInfo}>
-            <p className={css.underline}>
-              <h2 className={css.font}>{name}</h2>
-            </p>
+          <h1>{name}</h1>
+          <div className={css.reviews}>
             <div>
-              <span>212 Rating</span>
-              <span>212 Rating</span>
-              <span>212 Rating</span>
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiOutlineStar />
             </div>
+            <p>{new_price}</p>
           </div>
-          <div className={css.priceInfo}></div>
-          <div className={css.quantityInfo}></div>
-          <div className={css.otherInfo}></div>
+          <h4>Details:</h4>
+          <p>
+            <BlockContent
+              blocks={description}
+              projectId='4rywkbjf'
+              dataset='production'
+            />
+          </p>
+          <p className={css.price}>${new_price}</p>
+          <div className={css.quantityContainer}>
+            <h3>Quantity:</h3>
+            <p className={css.quantityDescription}>
+              <span className={css.minus}>
+                <AiOutlineMinus />
+              </span>
+              <span className={css.num}>12</span>
+              <span className={css.plus}>
+                <AiOutlinePlus />
+              </span>
+            </p>
+          </div>
+          <div className={css.buttonContainer}>
+            <button type='button' className={css.addToCart}>
+              Add to Cart
+            </button>
+            <button type='button' className={css.buyNow}>
+              Buy Now
+            </button>
+          </div>
         </div>
       </section>
 
