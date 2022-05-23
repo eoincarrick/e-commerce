@@ -4,12 +4,7 @@ import { urlFor } from '../library/client';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
-const SearchProductAndCategories = ({
-  data,
-  categories,
-  selectedValue,
-  setSelectedValue,
-}) => {
+const SearchProductAndCategories = ({ data, categories, selectedValue }) => {
   const [filteredName, setFilteredName] = useState([]);
   const [filteredCategory, setFilteredCategory] = useState([]);
   const [word, setWord] = useState('');
@@ -52,11 +47,14 @@ const SearchProductAndCategories = ({
               value={word}
               onChange={handleSearch}
             />
-            <FaTimes
-              onClick={handleClear}
-              className={`${css.icons} ${css.icon}`}
-            />{' '}
-            <FaSearch className={css.icons} />
+            {filteredName.length === 0 ? (
+              <FaSearch className={css.icons} />
+            ) : (
+              <FaTimes
+                onClick={handleClear}
+                className={`${css.icons} ${css.icon}`}
+              />
+            )}
           </div>
 
           {filteredName !== 0 && (
@@ -110,11 +108,14 @@ const SearchProductAndCategories = ({
               value={word}
               onChange={handleSearch}
             />
-            <FaTimes
-              onClick={handleClear}
-              className={`${css.icons} ${css.icon}`}
-            />
-            <FaSearch className={css.icons} />
+            {filteredCategory.length !== 0 ? (
+              <FaSearch className={css.icons} />
+            ) : (
+              <FaTimes
+                onClick={handleClear}
+                className={`${css.icons} ${css.icon}`}
+              />
+            )}
           </div>
 
           <ul className={css.categories}>
