@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const SearchProductAndCategories = ({
   data,
+  categories,
   selectedValue,
   setSelectedValue,
 }) => {
@@ -20,8 +21,8 @@ const SearchProductAndCategories = ({
       return productName.name.toLowerCase().includes(searchWord);
     });
 
-    const searchCategory = data.filter((productName, index) => {
-      return productName.name.toLowerCase().includes(searchWord);
+    const searchCategory = categories.filter((categoryName, index) => {
+      return categoryName.name.toLowerCase().includes(searchWord);
     });
 
     if (searchWord === '') {
@@ -29,6 +30,7 @@ const SearchProductAndCategories = ({
       setFilteredCategory([]);
     } else {
       setFilteredName(searchName);
+      setFilteredCategory(searchCategory);
     }
   };
 
@@ -108,35 +110,26 @@ const SearchProductAndCategories = ({
               value={word}
               onChange={handleSearch}
             />
-            <FaTimes onClick={handleClear} /> <FaSearch />
+            <FaTimes
+              onClick={handleClear}
+              className={`${css.icons} ${css.icon}`}
+            />
+            <FaSearch className={css.icons} />
           </div>
 
-          <ul className={css.cardContainer}>
-            {data.map((item, i) => (
-              <li key={i} className={css.card}>
-                <div className={css.center}>
-                  <img
-                    className={css.productImage}
-                    src={urlFor(item?.image[0])}
-                    alt={item.slug.current}
-                    loading='lazy'
-                  />
-                  <p className={css.productName}>{item.name}</p>
-                </div>
-                <ul className={css.productDetails}>
-                  <li className={css.priceContainer}>
-                    <span className={css.green}>${item.new_price}</span>
-                    <span className={css.gray}>${item.old_price}</span>
-                  </li>
-                  <li className={css.buttonContainer}>
-                    <Link href={`/product/${item.slug.current}`}>
-                      <button className={css.btn} type='button'>
-                        Details
-                      </button>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+          <ul className={css.categories}>
+            {filteredCategory.map((category) => (
+              <div
+                key={category?._id}
+                className={css.cards}
+                style={{
+                  backgroundImage: `url('${urlFor(category?.image)}')`,
+                }}
+              >
+                <Link href={`/category/${category?._id}`}>
+                  <p className={css.categoryText}>{category.name}</p>
+                </Link>
+              </div>
             ))}
           </ul>
         </div>
