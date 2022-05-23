@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../styles/Header.module.css';
 import { HiShoppingCart } from 'react-icons/hi';
+import { FaSearch } from 'react-icons/fa';
 import { Cart } from './index';
 import Link from 'next/link';
 
@@ -15,10 +16,15 @@ const Header = () => {
 
       <nav className={css.flex}>
         <ul className={css.icon}>
-          <div className={css.cartContainer}>
+          <li className={css.cartContainer}>
             <HiShoppingCart className={css.list} />
             <span className={css.cartNumber}>1</span>
-          </div>
+          </li>
+          <Link href='/search'>
+            <li>
+              <FaSearch className={css.cartContainer} />
+            </li>
+          </Link>
         </ul>
       </nav>
 
