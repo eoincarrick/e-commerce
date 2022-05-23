@@ -12,6 +12,7 @@ import hero from './hero';
 import tags from './tags';
 import color from './color';
 import size from './size';
+import comment from './comment';
 
 // We import object schemas
 import blockContent from './blockContent';
@@ -29,6 +30,7 @@ export default createSchema({
     color,
     size,
     hero,
+    comment,
 
     /* When added to this list, object types can be used as
    { type: "typename" } in other document schemas.

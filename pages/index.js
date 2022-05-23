@@ -1,5 +1,12 @@
 import css from '../styles/Home.module.css';
-import { Hero, Category, Product, Banner, Footer } from '../components';
+import {
+  Hero,
+  Category,
+  Product,
+  Banner,
+  Footer,
+  SearchProduct,
+} from '../components';
 
 import { client } from '../library/client';
 
