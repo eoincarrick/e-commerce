@@ -4,6 +4,7 @@ import css from '../../styles/ProductCredentials.module.css';
 import ReactImageMagnify from 'react-image-magnify';
 import Link from 'next/link';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import { FaUser } from 'react-icons/fa';
 import {
   AiFillStar,
   AiOutlinePlus,
@@ -16,6 +17,9 @@ import { useManageContext } from '../../context/ManageStateContext';
 
 const ProductCredentials = ({ singleProduct, commentProduct }) => {
   // Querying for data from backend (SANITY)
+
+  const displayComment = commentProduct.comments;
+  console.log(displayComment);
 
   const [index, setIndex] = useState(0);
   const {
@@ -308,27 +312,35 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
             </section>
           </form>
 
-          {commentProduct && (
-            <div className='commentSection'>
-              <div className='headerComment'>
-                <h1>{commentProduct.length}Comment Section</h1>
+          {displayComment && (
+            <div className={css.commentSectionBox}>
+              <div className={css.headerComment}>
+                <span className={css.commentNumber}>{displayComment.length}</span>
+                <h1>Comment Section</h1>
               </div>
 
               <div className={css.commentBox}>
-                {commentProduct?.map((comment) => (
-                  <section key={comment._id} className={css.commentSection}>
+                {displayComment?.map((comment) => (
+                  <section key={comment?._id} className={css.commentSection}>
                     <div className={css.userAndProduct}>
-                      <p>John Deo</p>
-                      <p>
-                        <img
-                          className={css.commentProduct}
-                          src={urlFor(comment.product.image[0])}
-                          alt={comment.product.slug.current}
-                        />
-                        <p>{comment.product.name}</p>
-                      </p>
+                      <div className={css.commenterName}>John Deo</div>
+                      <a href={`/product/${comment.product.slug.current}#`}>
+                        <div className={css.commentProductImgAndName}>
+                          <img
+                            className={css.commentProduct}
+                            src={urlFor(comment?.product.image[0])}
+                            alt={comment?.product.slug.current}
+                          />
+                          <div>{comment?.product.name}</div>
+                        </div>
+                      </a>
                     </div>
-                    <div className={css.userComment}></div>
+                    <div className={css.userComment}>
+                      <div>
+                        <FaUser />
+                      </div>
+                      <div className={css.commentText}>{comment.comment}</div>
+                    </div>
                   </section>
                 ))}
               </div>
@@ -364,13 +376,17 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { product } }) => {
   // Querying for data from backend (SANITY)
   const queryProduct = `*[_type == 'product' && slug.current == "${product}"][0]`;
-  const queryComment = `*[_type == 'comment']{
-  username,
+  const queryComment = `*[_type == 'product' && slug.current == '${product}'][0]{
+  'comments': *[_type == 'comment' && product._ref == ^._id]{
+  _id,
   comment,
+  username,
   product->{
-  name,
+  _id,
   slug,
-  image
+  image,
+  name,
+}
 }
 }`;
 
