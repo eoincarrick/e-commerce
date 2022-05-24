@@ -311,15 +311,25 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
           {commentProduct && (
             <div className='commentSection'>
               <div className='headerComment'>
-                <h1>Comment Section</h1>
+                <h1>{commentProduct.length}Comment Section</h1>
               </div>
 
               <div className={css.commentBox}>
                 {commentProduct?.map((comment) => (
-                  <section
-                    key={comment._id}
-                    className={css.commentSection}
-                  ></section>
+                  <section key={comment._id} className={css.commentSection}>
+                    <div className={css.userAndProduct}>
+                      <p>John Deo</p>
+                      <p>
+                        <img
+                          className={css.commentProduct}
+                          src={urlFor(comment.product.image[0])}
+                          alt={comment.product.slug.current}
+                        />
+                        <p>{comment.product.name}</p>
+                      </p>
+                    </div>
+                    <div className={css.userComment}></div>
+                  </section>
                 ))}
               </div>
             </div>
