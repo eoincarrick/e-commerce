@@ -53,7 +53,7 @@
 .cartNumber {
   padding-top: 0.1rem;
   position: absolute;
-  top: -0.3rem;
+  top: -0.4rem;
   right: -0.4rem;
   font-size: 0.5rem;
   color: #eee;
@@ -66,6 +66,10 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+.number {
+  margin-top: 0.rem;
 }
 
 .logo {

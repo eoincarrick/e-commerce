@@ -10,24 +10,24 @@ const Product = ({ products }) => {
         <h2> PRODUCTS</h2>
       </div>
       <ul className={css.cardContainer}>
-        {products.map((item, i) => (
+        {products?.map((item, i) => (
           <li key={i} className={css.card}>
             <div className={css.center}>
               <img
                 className={css.productImage}
                 src={urlFor(item?.image[0])}
-                alt={item.slug.current}
+                alt={item?.slug.current}
                 loading='lazy'
               />
-              <p className={css.productName}>{item.name}</p>
+              <p className={css.productName}>{item?.name}</p>
             </div>
             <ul className={css.productDetails}>
               <li className={css.priceContainer}>
-                <span className={css.green}>${item.new_price}</span>
-                <span className={css.gray}>${item.old_price}</span>
+                <span className={css.green}>${item?.new_price}</span>
+                <span className={css.gray}>${item?.old_price}</span>
               </li>
               <li className={css.buttonContainer}>
-                <Link href={`/product/${item.slug.current}`}>
+                <Link href={`/product/${item?.slug.current}`}>
                   <button className={css.btn} type='button'>
                     Details
                   </button>

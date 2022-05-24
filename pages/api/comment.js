@@ -11,7 +11,7 @@ const client = sanityClient({
 export default async function comment(req, res) {
   if (req.method === 'POST') {
     console.log(req.body);
-    const { _id, username, comment } = req.body;
+    const { _id, username, email, comment } = req.body;
 
     try {
       await client.create({
@@ -21,6 +21,7 @@ export default async function comment(req, res) {
           _ref: _id,
         },
         username,
+        email,
         comment,
       });
     } catch (error) {

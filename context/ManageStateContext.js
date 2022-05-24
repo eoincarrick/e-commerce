@@ -15,6 +15,8 @@ export const ManageStateContext = ({ children }) => {
   // @desc this "qty" is exported here and  used in '../pages/product/[slug].js'
   const [qty, setQty] = useState(1);
 
+  console.log('cartItems', cartItems);
+
   const addToCart = (product, quantity) => {
     // @desc checking if the "cartItems._id" === "product._id"
     // @desc and the "find()" return the first element or product or items that meet the condition below.
@@ -62,6 +64,45 @@ export const ManageStateContext = ({ children }) => {
     }
   };
 
+  const onRemove = (product) => {
+    foundProduct = cartItems.find((item) => item._id === product._id);
+    const newCartItems = cartItems.filter((item) => item._id !== product._id);
+
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundProduct.price * foundProduct.quantity
+    );
+    setTotalQuantities(
+      (prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
+    );
+    setCartItems(newCartItems);
+  };
+
+  const toggleCartItemQuantity = (id, value) => {
+    foundProduct = cartItems.find((item) => item._id === id);
+    index = cartItems.findIndex((product) => product._id === id);
+    const newCartItems = cartItems.filter((item) => item._id !== id);
+
+    if (value === 'inc') {
+      console.log('increased');
+      console.log('newCartItems', ...newCartItems);
+      setCartItems([{ ...foundProduct, quantity: foundProduct.quantity + 1 }]);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+    } else if (value === 'dec') {
+      console.log('decreased');
+      if (foundProduct.quantity > 1) {
+        setCartItems([
+          ...newCartItems,
+          { ...foundProduct, quantity: foundProduct.quantity - 1 },
+        ]);
+        console.log('newCartItems', ...newCartItems);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+      }
+    }
+  };
+
   // @desc Increasing the quantity of cart items.
   const increasedQuantity = () => {
     setQty((previousQuantity) => previousQuantity + 1);
@@ -78,7 +119,19 @@ export const ManageStateContext = ({ children }) => {
 
   return (
     <ManageContext.Provider
-      value={{ increasedQuantity, decreaseQuantity, addToCart, qty, setQty }}
+      value={{
+        totalQuantities,
+        showCart,
+        totalPrice,
+        qty,
+        onRemove,
+        toggleCartItemQuantity,
+        increasedQuantity,
+        decreaseQuantity,
+        setShowCart,
+        addToCart,
+        setQty,
+      }}
     >
       {children}
     </ManageContext.Provider>

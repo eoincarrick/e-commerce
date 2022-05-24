@@ -40,27 +40,65 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
 
   console.log(commentProduct);
 
-  const displayComment = commentProduct?.comments;
-
   const [comments, setComments] = useState('');
   const [names, setNames] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [localStorage, setLocalStorage] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [formData, setFormData] = useState({
+    name: null,
+    email: null,
+    comment: null,
+    storeData: false,
+  });
 
   const usernameEl = useRef();
+  const emailEl = useRef();
   const commentsEl = useRef();
+  const storeDataEl = useRef();
+
+  useEffect(() => {
+    setLocalStorage(window.localStorage);
+    const initialFormData = {
+      name: window.localStorage.getItem('name'),
+      email: window.localStorage.getItem('email'),
+      storeData:
+        window.localStorage.getItem('name') ||
+        window.localStorage.getItem('email'),
+    };
+    setFormData(initialFormData);
+  }, []);
 
   const handleOnSubmit = (event) => {
+    // @desc prevent refresh
     event.preventDefault();
-    setComments('');
-    setNames('');
 
+    // @desc reset input after submission.
+    setComments('');
+    // setNames('');
+    // setEmail('');
+
+    // @desc getting values
     const { value: username } = usernameEl.current;
     const { value: comment } = commentsEl.current;
+    const { value: email } = emailEl.current;
+    const { checked: storeData } = storeDataEl.current;
 
+    //@ desc, store the username and email, only if the user check it.
+    if (storeData) {
+      localStorage.setItem('name', username);
+      localStorage.setItem('email', email);
+    } else {
+      //@desc remove remove the username and email unchecked.
+      localStorage.removeItem('name', username);
+      localStorage.removeItem('email', email);
+    }
+
+    // @desc, putting all value to one place, Object
     const formObj = {
       _id,
       username,
+      email,
       comment,
     };
 
@@ -82,12 +120,11 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
       const data = await response.json();
     };
     handlePostComment(formObj).then((response) => {
-      setIsLoading(isLoading);
       setShowSuccessMessage(!showSuccessMessage);
 
       setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 1500);
+      }, 5000);
     });
   };
 
@@ -206,56 +243,83 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
       <section className={css.productDescription}></section>
 
       <section className={css.productOthers}></section>
+
       <section className={css.productComment}>
-        <div className='formContainer'>
-          <form className='form' onSubmit={handleOnSubmit}>
-            <section className='inputContainer'>
-              <label>Name:</label>
+        <div className={css.formContainer}>
+          <form className={css.form} onSubmit={handleOnSubmit}>
+            <section className={css.inputContainer}>
+              <label className={css.text}>Name:</label>
               <input
+                className={css.input}
                 type='text'
-                placeholder='Enter name here'
+                placeholder='John Doe'
                 name='username'
                 ref={usernameEl}
                 value={names}
                 onChange={(event) => setNames(event.target.value)}
               />
             </section>
-            <section className='inputContainer'>
-              <label>Comment:</label>
+            <section className={css.inputContainer}>
+              <label className={css.text}>E-mail:</label>
+              <input
+                className={css.input}
+                type='email'
+                placeholder='example@company.com'
+                name='username'
+                ref={emailEl}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </section>
+            <section className={css.inputContainer}>
+              <label className={css.text}>Comment:</label>
               <textarea
-                className='comment '
+                className={css.input}
                 type='text'
-                placeholder='Enter name here'
+                placeholder='Write something about this product'
                 name='comment'
                 ref={commentsEl}
                 value={comments}
                 onChange={(event) => setComments(event.target.value)}
               />
             </section>
-            <section>
-              {!isLoading && <button>Add Blog</button>}
-              {isLoading && <button>Adding blog</button>}
+            <section className={css.checkboxContainer}>
+              <input
+                type='checkbox'
+                ref={storeDataEl}
+                className={css.checkbox}
+                name='storeDate'
+              />
+              <label className={css.text}>Save my e-mail and name.</label>
             </section>
             {showSuccessMessage && (
               <span className={css.submitted}>
                 Refresh after a minutes to see cemment.
               </span>
             )}
+            <section className={css.CommentButton}>
+              <button
+                onClick={handleOnSubmit}
+                type='button'
+                className={css.buyNow}
+              >
+                Post Comment
+              </button>
+            </section>
           </form>
 
-          {displayComment && (
+          {commentProduct && (
             <div className='commentSection'>
               <div className='headerComment'>
                 <h1>Comment Section</h1>
               </div>
 
-              <div className='comment'>
-                {displayComment.map((comment) => (
-                  <div key={comment._id} className='commentCard'>
-                    <h3>{comment.authorName}</h3>
-                    <p>1st may 2202</p>
-                    <p>{comment.comment}</p>
-                  </div>
+              <div className={css.commentBox}>
+                {commentProduct?.map((comment) => (
+                  <section
+                    key={comment._id}
+                    className={css.commentSection}
+                  ></section>
                 ))}
               </div>
             </div>

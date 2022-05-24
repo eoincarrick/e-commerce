@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { client, urlFor } from '../library/client';
+import { client } from '../library/client';
 import { SearchProductAndCategories } from '../components';
 
 const search = ({ result, categories }) => {
@@ -30,12 +30,6 @@ export const getStaticProps = async () => {
   image,
   new_price,
   old_price,
-  category ->{
- _id,
-  name,
-  image,
-  slug,
-}
 }`;
 
   const queryCategory = `*[_type == 'category']`;

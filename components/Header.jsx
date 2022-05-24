@@ -4,8 +4,10 @@ import { HiShoppingCart } from 'react-icons/hi';
 import { FaSearch } from 'react-icons/fa';
 import { Cart } from './index';
 import Link from 'next/link';
+import { useManageContext } from '../context/ManageStateContext';
 
 const Header = () => {
+  const { showCart, setShowCart, totalQuantities } = useManageContext();
   return (
     <header className={css.header}>
       <Link href={'/'}>
@@ -16,9 +18,11 @@ const Header = () => {
 
       <nav className={css.flex}>
         <ul className={css.icon}>
-          <li className={css.cartContainer}>
+          <li className={css.cartContainer} onClick={() => setShowCart(true)}>
             <HiShoppingCart className={css.list} />
-            <span className={css.cartNumber}>1</span>
+            <span className={css.cartNumber}>
+              <p className={css.number}>{totalQuantities}</p>
+            </span>
           </li>
           <Link href='/search'>
             <li>
@@ -28,7 +32,7 @@ const Header = () => {
         </ul>
       </nav>
 
-      {/* <Cart /> */}
+      {showCart && <Cart />}
     </header>
   );
 };
