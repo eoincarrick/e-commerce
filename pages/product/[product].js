@@ -14,6 +14,7 @@ import {
 import BlockContent from '@sanity/block-content-to-react';
 
 import { useManageContext } from '../../context/ManageStateContext';
+import { Footer } from '../../components';
 
 const ProductCredentials = ({ singleProduct, commentProduct }) => {
   // Querying for data from backend (SANITY)
@@ -49,12 +50,6 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
   const [email, setEmail] = useState('');
   const [localStorage, setLocalStorage] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [formData, setFormData] = useState({
-    name: null,
-    email: null,
-    comment: null,
-    storeData: false,
-  });
 
   const usernameEl = useRef();
   const emailEl = useRef();
@@ -63,14 +58,11 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
 
   useEffect(() => {
     setLocalStorage(window.localStorage);
-    const initialFormData = {
-      name: window.localStorage.getItem('name'),
-      email: window.localStorage.getItem('email'),
-      storeData:
-        window.localStorage.getItem('name') ||
-        window.localStorage.getItem('email'),
-    };
-    setFormData(initialFormData);
+    usernameEl.current.value = window.localStorage.getItem('name');
+    emailEl.current.value = window.localStorage.getItem('email');
+    storeDataEl.current.checked =
+      window.localStorage.getItem('name') ??
+      window.localStorage.getItem('email');
   }, []);
 
   const handleOnSubmit = (event) => {
@@ -260,6 +252,7 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
                 name='username'
                 ref={usernameEl}
                 value={names}
+                required
                 onChange={(event) => setNames(event.target.value)}
               />
             </section>
@@ -272,6 +265,7 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
                 name='username'
                 ref={emailEl}
                 value={email}
+                required
                 onChange={(event) => setEmail(event.target.value)}
               />
             </section>
@@ -284,6 +278,7 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
                 name='comment'
                 ref={commentsEl}
                 value={comments}
+                required
                 onChange={(event) => setComments(event.target.value)}
               />
             </section>
@@ -291,14 +286,15 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
               <input
                 type='checkbox'
                 ref={storeDataEl}
+                checked={storeDataEl}
                 className={css.checkbox}
                 name='storeDate'
               />
-              <label className={css.text}>Save my e-mail and name.</label>
+              <label className={css.text}>Save information(Name & Email)</label>
             </section>
             {showSuccessMessage && (
               <span className={css.submitted}>
-                Refresh after a minutes to see cemment.
+                Refresh after a minutes to see comment.
               </span>
             )}
             <section className={css.CommentButton}>
@@ -312,10 +308,12 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
             </section>
           </form>
 
-          {displayComment && (
+          {displayComment.length !== 0 && (
             <div className={css.commentSectionBox}>
               <div className={css.headerComment}>
-                <span className={css.commentNumber}>{displayComment.length}</span>
+                <span className={css.commentNumber}>
+                  {displayComment.length}
+                </span>
                 <h1>Comment Section</h1>
               </div>
 
@@ -323,7 +321,9 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
                 {displayComment?.map((comment) => (
                   <section key={comment?._id} className={css.commentSection}>
                     <div className={css.userAndProduct}>
-                      <div className={css.commenterName}>John Deo</div>
+                      <div className={css.commenterName}>
+                        {comment.username}
+                      </div>
                       <a href={`/product/${comment.product.slug.current}#`}>
                         <div className={css.commentProductImgAndName}>
                           <img
@@ -346,8 +346,14 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
               </div>
             </div>
           )}
+
+          {displayComment.length === 0 && (
+            <p>Be the first to leave a comment</p>
+          )}
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
