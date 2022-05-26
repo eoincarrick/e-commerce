@@ -12,7 +12,7 @@ const SearchProductAndCategories = ({ data, selectedValue }) => {
     const searchWord = event.target.value;
     setWord(searchWord);
     const searchName = data.filter((productName, index) => {
-      return productName.name.toLowerCase().includes(searcBsBagBsBaghWord.toLowerCase());
+      return productName.name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === '') {
@@ -80,9 +80,14 @@ const SearchProductAndCategories = ({ data, selectedValue }) => {
             </ul>
           )}
 
-          {!filteredName && (
-            <div>
-              <p>Search For A Product Name</p>
+          {!filteredName.length && word.length > 1 && (
+            <div className={css.searchProductFirst}>
+              <p>Product not found</p>
+            </div>
+          )}
+          {!filteredName.length && word === '' && (
+            <div className={css.searchProductFirst}>
+              <p>Type to start product searching</p>q
             </div>
           )}
         </div>
