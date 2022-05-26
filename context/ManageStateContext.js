@@ -90,7 +90,7 @@ export const ManageStateContext = ({ children }) => {
       console.log('increased');
       console.log('newCartItems', ...newCartItems);
       setCartItems([{ ...foundProduct, quantity: foundProduct.quantity + 1 }]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.new_price);
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
     } else if (value === 'decrease') {
       console.log('decreased');
@@ -100,7 +100,7 @@ export const ManageStateContext = ({ children }) => {
           { ...foundProduct, quantity: foundProduct.quantity - 1 },
         ]);
         console.log('newCartItems', ...newCartItems);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.new_price);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
       }
     }

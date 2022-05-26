@@ -87,7 +87,7 @@ const SearchProductAndCategories = ({ data, selectedValue }) => {
           )}
           {!filteredName.length && word === '' && (
             <div className={css.searchProductFirst}>
-              <p>Type to start product searching</p>q
+              <p>Type to start product searching</p>
             </div>
           )}
         </div>

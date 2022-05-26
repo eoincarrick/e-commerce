@@ -16,6 +16,7 @@ import BlockContent from '@sanity/block-content-to-react';
 
 import { useManageContext } from '../../context/ManageStateContext';
 import { Footer } from '../../components';
+import getStripe from '../../library/getStripe';
 
 const ProductCredentials = ({ singleProduct, commentProduct }) => {
   // Querying for data from backend (SANITY)
@@ -121,6 +122,24 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
         setShowSuccessMessage(false);
       }, 5000);
     });
+  };
+
+  const singleProductCheckout = async () => {
+    const stripe = await getStripe();
+
+    const response = await fetch('/api/singleProductCheckout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(singleProduct),
+    });
+
+    if (response.statusCode === 500) return;
+
+    const data = await response.json();
+
+    stripe.redirectToCheckout({ sessionId: data.id });
   };
 
   return (
@@ -233,7 +252,11 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
             >
               Add to Cart
             </button>
-            <button type='button' className={css.buyNow}>
+            <button
+              type='button'
+              onClick={singleProductCheckout}
+              className={css.buyNow}
+            >
               Buy Now
             </button>
           </div>
