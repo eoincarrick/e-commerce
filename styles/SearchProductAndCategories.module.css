@@ -10,7 +10,13 @@
   justify-content: center;
   align-items: center;
   margin: 2rem auto;
+  padding-inline: 2rem;
   box-shadow: 0 0 1rem -0.7rem #000;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 .input {

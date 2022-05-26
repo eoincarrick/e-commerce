@@ -15,7 +15,10 @@ export const ManageStateContext = ({ children }) => {
   // @desc this "qty" is exported here and  used in '../pages/product/[slug].js'
   const [qty, setQty] = useState(1);
 
-  console.log('cartItems', cartItems);
+  console.log('ManageContext cartItems', cartItems);
+
+  let foundProduct;
+  let index;
 
   const addToCart = (product, quantity) => {
     // @desc checking if the "cartItems._id" === "product._id"
@@ -83,13 +86,13 @@ export const ManageStateContext = ({ children }) => {
     index = cartItems.findIndex((product) => product._id === id);
     const newCartItems = cartItems.filter((item) => item._id !== id);
 
-    if (value === 'inc') {
+    if (value === 'increase') {
       console.log('increased');
       console.log('newCartItems', ...newCartItems);
       setCartItems([{ ...foundProduct, quantity: foundProduct.quantity + 1 }]);
       setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
-    } else if (value === 'dec') {
+    } else if (value === 'decrease') {
       console.log('decreased');
       if (foundProduct.quantity > 1) {
         setCartItems([
@@ -123,7 +126,12 @@ export const ManageStateContext = ({ children }) => {
         totalQuantities,
         showCart,
         totalPrice,
+        cartItems,
+        cartItems,
         qty,
+        setTotalPrice,
+        setTotalQuantities,
+        setCartItems,
         onRemove,
         toggleCartItemQuantity,
         increasedQuantity,

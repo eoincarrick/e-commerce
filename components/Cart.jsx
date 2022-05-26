@@ -1,25 +1,34 @@
 import React from 'react';
 import css from '../styles/Cart.module.css';
-import {
-  AiOutlineLeft,
-  AiOutlinePlus,
-  AiOutlineMinus,
-  AiOutlineShopping,
-} from 'react-icons/ai';
-import { TiDeleteOutline } from 'react-icons/ti';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { RiArrowGoBackFill } from 'react-icons/ri';
+import { CgTrash } from 'react-icons/cg';
+import { urlFor } from '../library/client';
+import getStripe from '../library/getStripe';
+
+import Link from 'next/link';
 
 import { useManageContext } from '../context/ManageStateContext';
 
 const Cart = () => {
   const {
+    setCartItems,
     cartItems,
     totalQuantities,
     setShowCart,
     onRemove,
     totalPrice,
     toggleCartItemQuantity,
+    setTotalPrice,
+    setTotalQuantities,
   } = useManageContext();
   console.log('cartItems', cartItems);
+
+  const handleClearAll = () => {
+    setCartItems([]);
+    setTotalPrice(0);
+    setTotalQuantities(0);
+  };
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -41,25 +50,28 @@ const Cart = () => {
   return (
     <div className={css.cartContainer}>
       <div className={css.container}>
-        <button
-          type='button'
-          className='cart-heading'
-          onClick={() => setShowCart(false)}
-        >
-          <AiOutlineLeft />
-          <span className='heading'>Your Cart</span>
-          <span className='cart-num-items'>({totalQuantities} items)</span>
-        </button>
+        <div className={css.backAndCounter}>
+          <RiArrowGoBackFill
+            className={css.back}
+            onClick={() => setShowCart(false)}
+          />
+          {totalQuantities !== 0 && (
+            <span className={css.itemCounter}>({totalQuantities} items)</span>
+          )}
+        </div>
 
-        {cartItems && (
-          <div className='empty-cart'>
-            <AiOutlineShopping size={150} />
-            <h3>Your shopping bag is empty</h3>
+        {cartItems.length <= 0 && (
+          <div className={css.emptyCartContainer}>
+            <div className={css.text}>
+              <h3>Empty Cart</h3>
+              <p>Add a product and check again.</p>
+            </div>
+            <img src='/add.gif' alt='' />
             <Link href='/'>
               <button
                 type='button'
                 onClick={() => setShowCart(false)}
-                className='btn'
+                className={css.btn}
               >
                 Continue Shopping
               </button>
@@ -67,60 +79,67 @@ const Cart = () => {
           </div>
         )}
 
-        <div className='product-container'>
+        <div className={css.cartProductContainer}>
           {cartItems.map((item) => (
-            <div className='product' key={item._id}>
-              {console.log(item)}
+            <div className={css.cartProductCard} key={item._id}>
               <img
                 src={urlFor(item?.image[0])}
-                className='cart-product-image'
+                className={css.cartProductImage}
               />
-              <div className='item-desc'>
-                <div className='flex top'>
-                  <h5>{item.name}</h5>
-                  <h4>${item.price}</h4>
+              <div className={css.cartProductDetails}>
+                <div className={css.nameAndPrice}>
+                  <p className={css.cartProductName}>{item.name}</p>
+                  <h4 className={css.green}>${item.new_price}</h4>
                 </div>
-                <div className='flex bottom'>
-                  <div>
-                    <p className='quantity-desc'>
-                      <span
-                        className='minus'
-                        onClick={() => toggleCartItemQuantity(item._id, 'dec')}
-                      >
-                        <AiOutlineMinus />
-                      </span>
-                      <span className='num' onClick=''>
-                        {item.quantity}
-                      </span>
-                      <span
-                        className='plus'
-                        onClick={() => toggleCartItemQuantity(item._id, 'inc')}
-                      >
-                        <AiOutlinePlus />
-                      </span>
-                    </p>
+                <div className={css.displayFlex}>
+                  <div className={css.quantityDescription}>
+                    <span
+                      className={css.minus}
+                      onClick={() =>
+                        toggleCartItemQuantity(cartItems, 'decrease')
+                      }
+                    >
+                      <AiOutlineMinus />
+                    </span>
+                    <span className={css.num}>{totalQuantities}</span>
+                    <span
+                      className={css.plus}
+                      onClick={() =>
+                        toggleCartItemQuantity(cartItems, 'increase')
+                      }
+                    >
+                      <AiOutlinePlus />
+                    </span>
                   </div>
-                  <button
-                    type='button'
-                    className='remove-item'
+                  <CgTrash
+                    className={css.cartRemove}
                     onClick={() => onRemove(item)}
-                  >
-                    <TiDeleteOutline />
-                  </button>
+                  />
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className='cart-bottom'>
-          <div className='total'>
-            <h3>Subtotal:</h3>
-            <h3>${totalPrice}</h3>
+        <div className={css.cartStripeAndTotal}>
+          <div className={css.totalPrice}>
+            <h4>Subtotal:</h4>
+            <h3 className={css.green}>${Math.ceil(totalPrice)}</h3>
           </div>
-          <div className='btn-container'>
-            <button type='button' className='btn' onClick={handleCheckout}>
-              Pay with Stripe
+          <div className={css.buttonContainer}>
+            <button
+              type='button'
+              className={css.stripe}
+              onClick={handleCheckout}
+            >
+              Stripe Pay
+            </button>
+            <button
+              type='button'
+              className={css.clearAll}
+              onClick={handleClearAll}
+            >
+              Clear All
             </button>
           </div>
         </div>

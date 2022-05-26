@@ -1,0 +1,100 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.thankyou,
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image {
+  width: 10rem;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+}
+
+.email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  background-color: #0066ff;
+  color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 1rem -0.6rem #000;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+}
+
+.productOnWay {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  width: 20rem;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputAndIcon {
+  width: 20rem;
+  padding: 1rem;
+  border: none;
+  font-family: 'Inter';
+  font-size: 1.2rem;
+  box-shadow: 0 0 1rem -0.5rem #000;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.input {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter';
+}
+
+.icon {
+  color: rgb(199, 199, 199);
+}
+
+.sendButton {
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  background-color: #0066ff;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  padding: 0.8rem 1rem;
+}

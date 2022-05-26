@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         mode: 'payment',
         payment_method_types: ['card'],
         billing_address_collection: 'auto',
-        shipping_options: [{ shipping_rate: 'shr_1Kn3IaEnylLNWUqj5rqhg9oV' }],
+        shipping_options: [{ shipping_rate: 'shr_1L3le6L08BYUDEnsMFKckcXQ' }],
         line_items: req.body.map((item) => {
           const img = item.image[0].asset._ref;
           const newImage = img
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
                 name: item.name,
                 images: [newImage],
               },
-              unit_amount: item.price * 100,
+              unit_amount: Math.ceil(item.new_price * 100),
             },
             adjustable_quantity: {
               enabled: true,
