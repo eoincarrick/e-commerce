@@ -19,7 +19,7 @@ const Product = ({ products }) => {
                 alt={item?.slug.current}
                 loading='lazy'
               />
-              <p className={css.productName}>{item?.name}</p>
+              <p className={css.productName}>{item?.name.replace("'", '')}</p>
             </div>
             <ul className={css.productDetails}>
               <li className={css.priceContainer}>
