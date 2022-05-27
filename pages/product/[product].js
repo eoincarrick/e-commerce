@@ -179,7 +179,7 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
           </div>
         </div>
         <div className={css.descriptionSection}>
-          <h1>{name}</h1>
+          <h1>{name.replace("'", '')}</h1>
           <div className={css.reviews}>
             <div>
               <AiFillStar />
@@ -309,7 +309,7 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
                             src={urlFor(comment?.product.image[0])}
                             alt={comment?.product.slug.current}
                           />
-                          <div>{comment?.product.name}</div>
+                          <div>{comment?.product.name.replace("'", '')}</div>
                         </div>
                       </a>
                     </div>

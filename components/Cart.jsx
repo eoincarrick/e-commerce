@@ -87,7 +87,9 @@ const Cart = () => {
               />
               <div className={css.cartProductDetails}>
                 <div className={css.nameAndPrice}>
-                  <p className={css.cartProductName}>{item.name}</p>
+                  <p className={css.cartProductName}>
+                    {item?.name.replace("'", '')}
+                  </p>
                   <h4 className={css.green}>${item.new_price}</h4>
                 </div>
                 <div className={css.displayFlex}>

@@ -23,7 +23,7 @@ const Category = ({ categorySlug }) => {
                 src={urlFor(item?.image[0])}
                 alt=''
               />
-              <p className={css.productName}>{item.name}</p>
+              <p className={css.productName}>{item?.name.replace("'", '')}</p>
             </div>
             <ul className={css.productDetails}>
               <li className={css.priceContainer}>
