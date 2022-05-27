@@ -10,7 +10,6 @@ const client = sanityClient({
 
 export default async function comment(req, res) {
   if (req.method === 'POST') {
-    console.log(req.body);
     const { email } = req.body;
 
     try {

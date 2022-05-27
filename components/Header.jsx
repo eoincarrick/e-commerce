@@ -12,7 +12,7 @@ const Header = () => {
     <header className={css.header}>
       <Link href={'/'}>
         <p className={css.logo}>
-          Dempi<span className={css.color}>Commerce</span>
+          Jestina<span className={css.color}>Commerce</span>
         </p>
       </Link>
 
