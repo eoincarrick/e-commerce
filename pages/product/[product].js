@@ -17,7 +17,6 @@ import BlockContent from '@sanity/block-content-to-react';
 
 import { useManageContext } from '../../context/ManageStateContext';
 import { Footer } from '../../components';
-import getStripe from '../../library/getStripe';
 
 const ProductCredentials = ({ singleProduct, commentProduct }) => {
   // Querying for data from backend (SANITY)

@@ -18,7 +18,7 @@ const Canceled = () => {
       </Link>
 
       <p>
-        If you faced any problem while checking out, please contact us on{' '}
+        If you faced any problem while checking out, please contact us on
         <a href='mailto:checkout@dempicommerce.com' className={css.link}>
           checkout@dempicommerce.com
         </a>
