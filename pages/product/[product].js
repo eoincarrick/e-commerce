@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
+import Image from 'next/image';
 import {
   AiFillStar,
   AiOutlinePlus,

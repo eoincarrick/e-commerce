@@ -3,7 +3,7 @@ import { client } from '../library/client';
 import { SearchProductAndCategories } from '../components';
 import Head from 'next/head';
 
-const search = ({ result }) => {
+const Search = ({ result }) => {
   const [selectedValue, setSelectedValue] = useState('name');
   return (
     <div>
@@ -45,4 +45,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default search;
+export default Search;

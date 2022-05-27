@@ -1,8 +1,9 @@
 import React from 'react';
 import css from '../styles/canceled.module.css';
 import Link from 'next/link';
+import Head from 'next/head'
 
-const canceled = () => {
+const Canceled = () => {
   return (
     <div className={css.container}>
       <Head>
@@ -26,4 +27,4 @@ const canceled = () => {
   );
 };
 
-export default canceled;
+export default Canceled;

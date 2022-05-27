@@ -8,7 +8,7 @@ const Footer = () => {
     <div className={css.footerContainer}>
       <Link href={`/`}>
         <p className={css.logo}>
-          2022 Dempi<span className={css.color}>Commerce.</span>{' '}
+          2022 Jestina<span className={css.color}>Commerce.</span>
           <span>All rights reserved</span>
         </p>
       </Link>

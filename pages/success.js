@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { MdOutlineAlternateEmail, MdSend } from 'react-icons/md';
 
-const success = () => {
+const Success = () => {
   const [email, setEmail] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -102,4 +102,4 @@ const success = () => {
   );
 };
 
-export default success;
+export default Success;
