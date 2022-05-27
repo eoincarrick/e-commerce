@@ -7,7 +7,32 @@ import { MdOutlineAlternateEmail, MdSend } from 'react-icons/md';
 const success = () => {
   const [email, setEmail] = useState('');
 
-  const handleEmailSubmission = () => {};
+  const handleEmailSubmission = (event) => {
+    event.preventDefault();
+    setEmail('');
+
+    const emailObj = { email };
+
+    const getEmail = async () => {
+      const response = await fetch('api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailObj),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    };
+    getEmail().then((response) => {
+      setShowSuccessMessage(!showSuccessMessage);
+
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000);
+    });;
+  };
   return (
     <div className={css.container}>
       <Head>
@@ -17,7 +42,7 @@ const success = () => {
       </Head>
       <section className={css.thankyou}>
         <img src='/loading.gif' alt='success page' className={css.image} />
-        <h1>THANK TOU FOR YOUR PURCHASE</h1>
+        <h1>THANK YOU FOR YOUR PURCHASE</h1>
         <p>
           Your order ID number is: <strong>00000021334</strong>.
         </p>
@@ -53,9 +78,11 @@ const success = () => {
         <div className={css.inputContainer}>
           <div className={css.inputAndIcon}>
             <input
+              value={email}
               type='text'
               placeholder='example@company.com'
               className={css.input}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <MdOutlineAlternateEmail className={css.icon} />
           </div>

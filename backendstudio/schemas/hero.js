@@ -4,17 +4,7 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'big_text',
-      title: 'Big Text',
-      type: 'string',
-    },
-    {
-      name: 'big_text',
-      title: 'Big Text',
-      type: 'string',
-    },
-    {
-      name: 'big_text',
+      name: 'bigtext',
       title: 'Big Text',
       type: 'string',
     },

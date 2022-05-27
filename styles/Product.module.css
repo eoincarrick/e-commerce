@@ -1,8 +1,8 @@
 .productContainerCard {
-  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -63,6 +63,7 @@
 }
 
 .header {
+  width: 100%;
   display: flex;
   justify-content: center;
   font-size: 2.5rem;
@@ -105,4 +106,29 @@
   -ms-border-radius: 0.3rem;
   -o-border-radius: 0.3rem;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1572px) {
+  .cardContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 866px) {
+  .cardContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 574px) {
+  .cardContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media only screen and (max-width: 407px) {
+  .header {
+    font-size: 1.1rem;
+  }
+  .cardContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

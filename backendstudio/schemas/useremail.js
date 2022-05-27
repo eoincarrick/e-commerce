@@ -1,10 +1,10 @@
 export default {
-  name: 'email',
-  title: 'Email',
+  name: 'useremail',
+  title: 'User Email',
   type: 'document',
   fields: [
     {
-      name: 'user_email',
+      name: 'email',
       title: 'User Email',
       type: 'string',
     },

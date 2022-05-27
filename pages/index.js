@@ -15,11 +15,9 @@ export default function Home({ products, categories }) {
     <div>
       <Hero />
       <main className={css.main}>
-        <Banner />
         <Category categories={categories} />
         <Banner />
         <Product products={products} />
-        <Banner />
         <Footer />
       </main>
     </div>

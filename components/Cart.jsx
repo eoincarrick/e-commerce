@@ -22,7 +22,6 @@ const Cart = () => {
     setTotalPrice,
     setTotalQuantities,
   } = useManageContext();
-  console.log('cartItems', cartItems);
 
   const handleClearAll = () => {
     setCartItems([]);
@@ -101,7 +100,7 @@ const Cart = () => {
                     >
                       <AiOutlineMinus />
                     </span>
-                    <span className={css.num}>{totalQuantities}</span>
+                    <span className={css.num}>{item.quantity}</span>
                     <span
                       className={css.plus}
                       onClick={() =>

@@ -15,11 +15,6 @@ export const ManageStateContext = ({ children }) => {
   // @desc this "qty" is exported here and  used in '../pages/product/[slug].js'
   const [qty, setQty] = useState(1);
 
-  console.log('ManageContext cartItems', cartItems);
-
-  let foundProduct;
-  let index;
-
   const addToCart = (product, quantity) => {
     // @desc checking if the "cartItems._id" === "product._id"
     // @desc and the "find()" return the first element or product or items that meet the condition below.
@@ -44,13 +39,11 @@ export const ManageStateContext = ({ children }) => {
     if (isProductAlreadyInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
         if (cartProduct._id === product._id) {
-          console.log('found', cartProduct);
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity, // @desc Updating the quantity in the cart.
           };
         } else {
-          console.log(`else returned ${cartProduct}`);
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
@@ -62,7 +55,6 @@ export const ManageStateContext = ({ children }) => {
       });
     } else {
       product.quantity = quantity;
-      console.log(`shoot`, product);
       setCartItems([...cartItems, { ...product }]);
     }
   };
@@ -73,7 +65,7 @@ export const ManageStateContext = ({ children }) => {
 
     setTotalPrice(
       (prevTotalPrice) =>
-        prevTotalPrice - foundProduct.price * foundProduct.quantity
+        prevTotalPrice - foundProduct.new_price * foundProduct.quantity
     );
     setTotalQuantities(
       (prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
@@ -81,26 +73,47 @@ export const ManageStateContext = ({ children }) => {
     setCartItems(newCartItems);
   };
 
+  let foundProduct;
+  let index;
+
   const toggleCartItemQuantity = (id, value) => {
     foundProduct = cartItems.find((item) => item._id === id);
     index = cartItems.findIndex((product) => product._id === id);
     const newCartItems = cartItems.filter((item) => item._id !== id);
 
     if (value === 'increase') {
-      console.log('increased');
-      console.log('newCartItems', ...newCartItems);
-      setCartItems([{ ...foundProduct, quantity: foundProduct.quantity + 1 }]);
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.new_price);
+      /* -- steps:
+        add slice(0, index) method to get previous order list,
+        change foundProduct quantity,
+        add slice(index+1) method to get next order list 
+       -- reason:
+        Array.prototype.slice() method does not mutate the original array
+       -- extra:
+        Comment/remove the newCartItems variable, as it is not used
+    */
+      setCartItems([
+        ...cartItems.slice(0, index),
+        { ...foundProduct, quantity: foundProduct.quantity + 1 },
+        ...cartItems.slice(index + 1),
+      ]);
+      //setCartItems([
+      //  ...newCartItems,
+      //  { ...foundProduct, quantity: foundProduct.quantity + 1 },
+      //]);
+      setTotalPrice(
+        (prevTotalPrice) => prevTotalPrice + foundProduct.new_price
+      );
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
     } else if (value === 'decrease') {
-      console.log('decreased');
       if (foundProduct.quantity > 1) {
         setCartItems([
-          ...newCartItems,
+          ...cartItems.slice(0, index),
           { ...foundProduct, quantity: foundProduct.quantity - 1 },
+          ...cartItems.slice(index + 1),
         ]);
-        console.log('newCartItems', ...newCartItems);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.new_price);
+        setTotalPrice(
+          (prevTotalPrice) => prevTotalPrice - foundProduct.new_price
+        );
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
       }
     }

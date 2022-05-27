@@ -9,7 +9,7 @@ const Banner = () => {
         <p className={css.discountPrice}>70% OFF</p>
         <p className={css.discountName}>Discount Sales</p>
         <p className={css.discountPrice}>Best product of the month</p>
-        <Link href='/product/name'>
+        <Link href='/product/men-plain-underwear'>
           <button className={css.btn} type='button'>
             Buy Now
           </button>
@@ -29,7 +29,7 @@ const Banner = () => {
         </p>
         <p className={css.discountName}>WEAR</p>
         <p className={css.discountName}>& FEEL IT.</p>
-        <Link href='/product/name'>
+        <Link href='/product/men-plain-underwear'>
           <button className={css.btn} type='button'>
             Add Cart
           </button>

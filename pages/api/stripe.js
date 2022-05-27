@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+import { urlFor } from '../../library/client';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -16,9 +17,9 @@ export default async function handler(req, res) {
           const newImage = img
             .replace(
               'image-',
-              'https://cdn.sanity.io/images/vfxfwnaw/production/'
+              'https://cdn.sanity.io/images/4rywkbjf/production/'
             )
-            .replace('-webp', '.webp');
+            .replace('-png', '.png');
 
           return {
             price_data: {

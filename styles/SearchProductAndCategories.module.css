@@ -182,3 +182,9 @@
   -o-border-radius: 0.3rem;
   cursor: pointer;
 }
+
+.searchProductFirst {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
