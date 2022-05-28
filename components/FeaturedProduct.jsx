@@ -23,7 +23,7 @@ const FeaturedProduct = () => {
           </li>
           <li className={css.buttonContainer}>
             <Link href='/product/name'>
-              <button className={css.btn} type='button'>
+              <button className={css.btn} type='butto'>
                 Details
               </button>
             </Link>
