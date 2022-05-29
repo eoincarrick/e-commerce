@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../styles/Banner.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Banner = () => {
   return (
@@ -16,11 +17,13 @@ const Banner = () => {
         </Link>
       </div>
       <div className={css.middle}>
-        <img
+        <Image
           className={css.image}
           src='https://images2.imgbox.com/c3/92/m3EhIgfx_o.png'
           alt=''
           loading='lazy'
+          width='400'
+          height='300'
         />
       </div>
       <div className={css.end}>
