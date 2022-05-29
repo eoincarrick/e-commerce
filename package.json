@@ -12,17 +12,16 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.3.0",
     "@sanity/image-url": "^1.0.1",
-    "@stripe/stripe-js": "^1.29.0",
+    "@stripe/stripe-js": "^1.31.0",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.3.1",
-    "react-image-magnify": "^2.7.4",
-    "react-multi-carousel": "^2.8.0",
-    "stripe": "^9.1.0"
+    "react-medium-image-zoom": "^4.4.3",
+    "stripe": "^9.5.0"
   },
   "devDependencies": {
-    "eslint": "8.15.0",
+    "eslint": "^8.16.0",
     "eslint-config-next": "12.1.6"
   }
 }

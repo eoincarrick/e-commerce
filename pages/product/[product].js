@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { client, urlFor } from '../../library/client';
 import css from '../../styles/ProductCredentials.module.css';
-import ReactImageMagnify from 'react-image-magnify';
 import Link from 'next/link';
 import Head from 'next/head';
 import { RiArrowGoBackFill } from 'react-icons/ri';
-import { FaUser } from 'react-icons/fa';
-import Image from 'next/image';
 import {
   AiFillStar,
   AiOutlinePlus,
@@ -14,6 +11,8 @@ import {
   AiOutlineStar,
 } from 'react-icons/ai';
 import BlockContent from '@sanity/block-content-to-react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 import { useManageContext } from '../../context/ManageStateContext';
 import { Footer } from '../../components';
@@ -138,27 +137,14 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
               />
             </span> */}
             <div className={css.hide}>
-              <ReactImageMagnify
-                {...{
-                  smallImage: {
-                    alt: current,
-                    className: css.ReactImageMagnify,
-                    isFluidWidth: true,
-                    src: urlFor(image[index]),
-                  },
-                  largeImage: {
-                    src: urlFor(image[index]),
-                    width: 1400,
-                    height: 1400,
-                  },
-                  lensStyle: {
-                    background: 'hsla(0, 0%, 100%, .3)',
-                    border: '1px solid #000',
-                  },
-                  isHintEnabled: true,
-                  shouldUsePositiveSpaceLens: true,
-                }}
-              />
+              <Zoom>
+                <img
+                  src={urlFor(image && image[index])}
+                  alt={current}
+                  className={css.img}
+                  loading='lazy'
+                />
+              </Zoom>
             </div>
           </div>
 
