@@ -1,14 +1,17 @@
 import React from 'react';
 import css from '../styles/Hero.module.css';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
     <section className={css.section}>
       <div>
-        <img
+        <Image
           className={css.image}
-          src='https://images2.imgbox.com/da/26/JAB9EPY9_o.png'
+          src='/sho.png'
           alt='dd'
+          width='500'
+          height='500'
         />
       </div>
       <div className={css.text}>

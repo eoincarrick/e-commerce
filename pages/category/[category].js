@@ -1,6 +1,6 @@
 import React from 'react';
 import { client, urlFor } from '../../library/client';
-import { Banner, Product } from '../../components';
+import { Banner } from '../../components';
 import css from '../../styles/CategoryCredentials.module.css';
 import Link from 'next/link';
 import Head from 'next/head';

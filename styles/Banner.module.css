@@ -145,6 +145,7 @@
 @media only screen and (max-width: 866px) {
   .bannerContainer {
     padding: 4rem 0;
+    height: auto;
     flex-direction: column;
     text-align: left;
   }

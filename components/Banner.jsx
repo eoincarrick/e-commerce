@@ -19,7 +19,7 @@ const Banner = () => {
       <div className={css.middle}>
         <Image
           className={css.image}
-          src='https://images2.imgbox.com/c3/92/m3EhIgfx_o.png'
+          src='/underwear.png'
           alt=''
           loading='lazy'
           width='400'

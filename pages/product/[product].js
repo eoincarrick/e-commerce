@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { client, urlFor } from '../../library/client';
 import css from '../../styles/ProductCredentials.module.css';
 import Link from 'next/link';
@@ -59,16 +59,11 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
 
     // @desc reset input after submission.
     setComments('');
-    // setNames('');
-    // setEmail('');
 
     // @desc getting values
     const { value: username } = usernameEl.current;
     const { value: comment } = commentsEl.current;
     const { value: email } = emailEl.current;
-
-    if (!username || !comment || email) {
-    }
 
     // @desc, putting all value to one place, Object
     const formObj = {
@@ -128,14 +123,6 @@ const ProductCredentials = ({ singleProduct, commentProduct }) => {
       <section className={css.productSection}>
         <div className={css.imageSection}>
           <div className={css.image}>
-            {/* <span className={css.show}>
-              <img
-                src={urlFor(image && image[index])}
-                alt={current}
-                className={css.img}
-                loading='lazy'
-              />
-            </span> */}
             <div className={css.hide}>
               <Zoom>
                 <img

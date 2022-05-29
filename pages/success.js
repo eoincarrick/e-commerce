@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import css from '../styles/success.module.css';
 import Link from 'next/link';
 import Head from 'next/head';
+import Image from 'next/image';
 import { MdOutlineAlternateEmail, MdSend } from 'react-icons/md';
 
 const Success = () => {
@@ -41,7 +42,6 @@ const Success = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <section className={css.thankyou}>
-        <img src='/loading.gif' alt='success page' className={css.image} />
         <h1 className={css.header}>THANK YOU FOR YOUR PURCHASE</h1>
         <p className={css.header}>
           Your order ID number is: <strong>00000021334</strong>.
@@ -57,7 +57,13 @@ const Success = () => {
       </section>
 
       <section className={css.productOnWay}>
-        <img src='/success.gif' alt='product on way' className={css.image} />
+        <Image
+          width='300'
+          height='300'
+          src='/success.gif'
+          alt='product on way'
+          className={css.image}
+        />
         <div>
           <h3>Relax, Your items are on their way</h3>
           <p className={css.text}>
@@ -69,7 +75,13 @@ const Success = () => {
 
       <section className={css.subscribe}>
         <div className={css.email}>
-          <img className={`${css.image}${css.at}`} src='/email.png' alt='' />
+          <Image
+            width='300'
+            height='300'
+            className={`${css.image}${css.at}`}
+            src='/email.png'
+            alt=''
+          />
           <p className={css.desc}>
             Subscribe to receive important product updates and special discount
             in your email directly

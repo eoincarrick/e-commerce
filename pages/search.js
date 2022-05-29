@@ -5,6 +5,9 @@ import Head from 'next/head';
 
 const Search = ({ result }) => {
   const [selectedValue, setSelectedValue] = useState('name');
+  console.log(result[0].image);
+
+  const imageProps = useNextSanityImage(configuredSanityClient, result.image);
   return (
     <div>
       <Head>
@@ -14,6 +17,7 @@ const Search = ({ result }) => {
       </Head>
       <div>
         <SearchProductAndCategories
+          imageProps={imageProps}
           data={result}
           selectedValue={selectedValue}
           setSelectedValue={setSelectedValue}
@@ -32,15 +36,11 @@ export const getStaticProps = async () => {
   old_price,
 }`;
 
-  const queryCategory = `*[_type == 'category']`;
-
   const result = await client.fetch(query);
-  const categories = await client.fetch(queryCategory);
 
   return {
     props: {
       result,
-      categories,
     },
   };
 };

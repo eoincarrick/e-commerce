@@ -4,7 +4,7 @@ import { urlFor } from '../library/client';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
-const SearchProductAndCategories = ({ data, selectedValue }) => {
+const SearchProductAndCategories = ({ imageProps, data, selectedValue }) => {
   const [filteredName, setFilteredName] = useState([]);
   const [word, setWord] = useState('');
 
@@ -55,10 +55,14 @@ const SearchProductAndCategories = ({ data, selectedValue }) => {
                 <li key={i} className={css.card}>
                   <div className={css.center}>
                     <img
-                      className={css.productImage}
-                      src={urlFor(item?.image[0])}
+                      src={urlFor(item.image[0])}
+                      width={200}
+                      height={200}
+                      {...imageProps}
                       alt={item.slug.current}
                       loading='lazy'
+                      layout='responsive'
+                      sizes='(max-width: 800px) 100vw, 800px'
                     />
                     <p className={css.productName}>
                       {item?.name.replace("'", '')}
