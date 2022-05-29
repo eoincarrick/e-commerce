@@ -5,7 +5,6 @@ import {
   Product,
   Banner,
   Footer,
-  SearchProduct,
 } from '../components';
 
 import { client } from '../library/client';
